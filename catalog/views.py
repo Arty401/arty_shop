@@ -1,4 +1,5 @@
-from django.views.generic import ListView, DetailView, View, TemplateView
+from django.db.models import Q
+from django.views.generic import ListView, DetailView, TemplateView
 
 from product import models
 
@@ -32,6 +33,16 @@ class LaptopListView(Categories, ListView):
     queryset = models.Laptop.objects.filter(available=True)
 
 
+class SearchProductView(Categories, ListView):
+    model = models.Laptop
+    template_name = 'catalog/product_list.html'
+    context_object_name = 'laptops'
+
+    def get_queryset(self):
+        query = self.request.GET.getlist('q')
+        return models.Laptop.objects.filter(Q(title__icontains=query))
+
+
 class FilterProductView(Categories, ListView):
     template_name = 'catalog/product_list.html'
     context_object_name = 'laptops'
@@ -39,6 +50,13 @@ class FilterProductView(Categories, ListView):
     def get_queryset(self):
         get = self.request.GET
         queryset = models.Laptop.objects.all()
+
+        # queryset = models.Laptop.objects.filter(
+        #     Q(ram__name__in=get.getlist('ram')) | Q(refresh_rate__value__in=get.getlist('refresh_rate')) |
+        #     Q(diagonal__value__in=get.getlist('diagonal')) | Q(os__name__in=get.getlist('os')) |
+        #     Q(core__name__in=get.getlist('core'))
+        # )
+
         if 'ram' in get:
             queryset = queryset.filter(ram__name__in=get.getlist('ram'))
         if 'refresh_rate' in get:

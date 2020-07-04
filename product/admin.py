@@ -10,6 +10,14 @@ class LaptopAdmin(admin.ModelAdmin):
     list_filter = ('available', 'created', 'updated')
     list_editable = ('available', 'price')
     prepopulated_fields = {'url': ('title',)}
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'short_description', 'description', 'url', 'price', 'available')
+        }),
+        ('Характеристики', {
+            'fields': ('core', 'ram', 'os', 'storage', 'refresh_rate', 'diagonal', 'color')
+        }),
+    )
 
 
 @admin.register(LaptopRAMType)

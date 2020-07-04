@@ -1,10 +1,52 @@
 {% extends 'layout/basic.html' %}
 
 {% block title %}
-{{ laptop.title }}
+    {{ laptop.title }}
 {% endblock %}
 
 {% block content %}
-    <p>{{ laptop.title }}</p>
-    <p>{{ laptop.category }}</p>
+    <p class="border-bottom p-2"><strong>{{ laptop.title }}</strong></p>
+    <img src="{{ laptop.image.url }}" alt="image">
+    <section>
+        <p class="p-2">
+            <strong>Описание:</strong><br>{{ laptop.description }}
+        </p>
+    </section>
+    <section class="p-2">
+        <p>
+            <strong>Характеристики:</strong>
+        </p>
+        <table border="2" cellpadding="5">
+            <tbody>
+            <tr>
+                <td>Процессор</td>
+                <td>{{ laptop.core }}</td>
+            </tr>
+            <tr>
+                <td>Операционная система</td>
+                <td>{{ laptop.os }}</td>
+            </tr>
+            <tr>
+                <td>Оперативная память (ОЗУ) Гб</td>
+                <td>{{ laptop.ram }}</td>
+            </tr>
+            <tr>
+                <td>Хранилище</td>
+                <td>{{ laptop.storage }}</td>
+            </tr>
+            <tr>
+                <td>Операционная система</td>
+                <td>{{ laptop.os }}</td>
+            </tr>
+            <tr>
+                <td>Диагональ экрана</td>
+                <td>{{ laptop.diagonal }}</td>
+            </tr>
+            <tr>
+                <td>Частота обновлений экрана</td>
+                <td>{{ laptop.refresh_rate }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

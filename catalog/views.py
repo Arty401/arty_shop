@@ -35,7 +35,7 @@ class LaptopListView(Categories, ListView):
 
 class SearchProductView(Categories, ListView):
     model = models.Laptop
-    template_name = 'catalog/product_list.html'
+    template_name = 'catalog/search_product_list.html'
     context_object_name = 'laptops'
 
     def get_queryset(self):
@@ -44,7 +44,7 @@ class SearchProductView(Categories, ListView):
 
 
 class FilterProductView(Categories, ListView):
-    template_name = 'catalog/product_list.html'
+    template_name = 'catalog/filter_product_list.html'
     context_object_name = 'laptops'
 
     def get_queryset(self):

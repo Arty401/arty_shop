@@ -1,0 +1,15 @@
+<div class="p-2 row row-cols-3">
+    {% for laptop in laptops %}
+        <div class="col-md-4 m-2 p-2 border rounded">
+            <img src="{{ laptop.image.url }}" alt="#" width="250px" height="250px">
+            <p>
+                <strong>
+                    <a href="{{ laptop.get_absolute_url }}">{{ laptop.title }}</a>
+                </strong>
+            </p>
+            <p>
+                {{ laptop.description }}
+            </p>
+        </div>
+    {% endfor %}
+</div>

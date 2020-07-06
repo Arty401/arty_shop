@@ -12,7 +12,7 @@ class LaptopAdmin(admin.ModelAdmin):
     prepopulated_fields = {'url': ('title',)}
     fieldsets = (
         (None, {
-            'fields': ('title', 'short_description', 'description', 'url', 'price', 'available')
+            'fields': ('title', 'short_description', 'description', 'url', 'category', 'price', 'available')
         }),
         ('Характеристики', {
             'fields': ('core', 'ram', 'os', 'storage', 'refresh_rate', 'diagonal', 'color')

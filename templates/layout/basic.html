@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     {% load bootstrap4 %}
     <meta http-equiv="Content-Type" content="ie=edge">
+    {% load static %}
     {% bootstrap_css %}
     {% bootstrap_jquery %}
     <title>{% block title %}Главная{% endblock %} - Arty Shop</title>
@@ -18,8 +19,10 @@
         <input class="form-control" type="text" name="q" placeholder="Поиск...">
         <button class="btn btn-success mx-2" type="submit">Найти</button>
     </form>
+    <a href="{% url 'detail' %}" class="btn btn-success">Корзина</a>
 </div>
-<div class="row">
+{% block filters %}
+    <div class="row">
     <div class="col-md-auto border border-dark bg-light rounded m-2 p-2">
         <p class="p-2"><strong>Фильтры:</strong></p>
         <form method="get" action="{% url 'catalog:by_category' %}" class="p-2">
@@ -80,12 +83,13 @@
             <button type="submit" class="btn btn-success" id="button">Найти</button>
         </form>
     </div>
-    <div class="col border border-dark bg-light rounded m-2 p-2">
-        <div class="m-2" id="content">
-            {% block content %}
-            {% endblock %}
-        </div>
+{% endblock %}
+<div class="col border border-dark bg-light rounded m-2 p-2">
+    <div class="m-2" id="content">
+        {% block content %}
+        {% endblock %}
     </div>
+</div>
 </div>
 </body>
 </html>

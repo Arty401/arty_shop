@@ -1,0 +1,54 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block title %}Корзина покупок{% endblock %}
+
+{% block filters %}
+{% endblock %}
+
+{% block content %}
+    <h2 class="py-2"><strong>Корзина покупок</strong></h2>
+    <table border="3" cellpadding="5">
+        <thead>
+        <tr>
+            <th>Изображение</th>
+            <th>Товар</th>
+            <th>Кол-во товара</th>
+            <th>Удалить из корзины</th>
+            <th>Цена за единицу товара</th>
+            <th>Общая цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        {% if product.image %}
+                            <a href="{{ product.get_absolute_url }}">
+                                <img src="{{ product.image.url }}" alt="image" width="300px" height="220px">
+                            </a>
+                        {% else %}
+                            <img src="{% static 'default/default-image-150x150.jpg' %}" alt="image" width="300px"
+                                 height="220px">
+                        {% endif %}
+                    </td>
+                    <td>{{ product.title }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><a href="{% url 'remove' product.id %}">Удалить из списка</a></td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr>
+            <td>Всего:</td>
+            <td colspan="4"></td>
+            <td>{{ cart.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="py-2">
+        <a href="{% url 'catalog:list' %}" class="btn btn-success">Продолжить покупки</a>
+    </p>
+{% endblock %}

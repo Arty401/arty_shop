@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.views.generic import ListView, DetailView, TemplateView
 
+from cart.forms import CartAddProductForm
 from product import models
 
 
@@ -75,3 +76,9 @@ class LaptopDetailView(Categories, DetailView):
     template_name = 'catalog/product_detail.html'
     slug_field = 'url'
     slug_url_kwarg = 'url'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['form'] = CartAddProductForm
+        return context
+

@@ -1,4 +1,6 @@
 {% extends 'layout/basic.html' %}
+{% load bootstrap4 %}
+{% load static %}
 
 {% block title %}
     {{ laptop.title }}
@@ -6,13 +8,17 @@
 
 {% block content %}
     <p class="border-bottom p-2"><strong>{{ laptop.title }}</strong></p>
-    <img src="{{ laptop.image.url }}" alt="image">
-    <section>
-        <p class="p-2">
+    {% if laptop.image %}
+        <img src="{{ laptop.image.url }}" alt="image" class="p-2">
+    {% else %}
+        <img src="{% static 'default/default-image-150x150.jpg' %}" alt="image">
+    {% endif %}
+    <section class="p-2 border-top">
+        <p>
             <strong>Описание:</strong><br>{{ laptop.description }}
         </p>
     </section>
-    <section class="p-2">
+    <section class="p-2 border-top">
         <p>
             <strong>Характеристики:</strong>
         </p>
@@ -49,4 +55,9 @@
             </tbody>
         </table>
     </section>
+    <form action="{% url 'add' id=laptop.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success addToCart" data-id="{{ laptop.id }}">Добавить в корзину</button>
+    </form>
 {% endblock %}

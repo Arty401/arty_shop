@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'product.apps.ProductConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
     'bootstrap4',
 ]
 

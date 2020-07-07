@@ -58,6 +58,6 @@
     <form action="{% url 'add' id=laptop.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-success addToCart" data-id="{{ laptop.id }}">Добавить в корзину</button>
+        <button class="btn btn-success">Добавить в корзину</button>
     </form>
 {% endblock %}

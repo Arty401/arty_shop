@@ -33,3 +33,10 @@ def cart_remove(request, id):
     product = get_object_or_404(Laptop, id=id)
     cart.remove(product)
     return redirect('detail')
+
+
+@login_required()
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect('detail')

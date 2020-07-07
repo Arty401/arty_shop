@@ -15,11 +15,11 @@
 <div class="row navbar navbar-light bg-light">
     <a href="{% url 'catalog:list' %}" class="navbar-brand">Arty Shop</a>
     <a href="{% url 'catalog:list' %}" class="nav-link">Главная</a>
-    <form class="form-inline" method="get" action="{% url 'catalog:search' %}">
+    <form class="nav-item form-inline" method="get" action="{% url 'catalog:search' %}">
         <input class="form-control" type="text" name="q" placeholder="Поиск...">
         <button class="btn btn-success mx-2" type="submit">Найти</button>
     </form>
-    <a href="{% url 'detail' %}" class="btn btn-success">Корзина</a>
+    <a href="{% url 'detail' %}" class="btn btn-success nav-link">Корзина</a>
 </div>
 {% block filters %}
     <div class="row">

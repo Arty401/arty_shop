@@ -51,6 +51,6 @@
     <p class="py-2">
         <a href="{% url 'catalog:list' %}" class="btn btn-success">Продолжить покупки</a>
         <a href="{% url 'clear' %}" class="btn btn-success">Очистить корзину</a>
-        <a href="#" class="btn btn-success ">Оформить заказ</a>
+        <a href="{% url 'orders:order_create' %}" class="btn btn-success ">Оформить заказ</a>
     </p>
 {% endblock %}

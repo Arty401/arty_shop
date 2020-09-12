@@ -1,0 +1,13 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}
+Спасибо за заказ
+{% endblock %}
+
+{% block filters %}
+{% endblock %}
+
+{% block content %}
+    <h2>Спасибо, что выбрали нас!</h2>
+    <p>Ваш заказ был успешно оформлен. Номер вашего заказа <strong>{{ order.id }}</strong>.</p>
+{% endblock %}

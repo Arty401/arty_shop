@@ -1,13 +1,30 @@
 {% extends 'layout/basic.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block title %}
-Оформление заказа
+    Оформление заказа
 {% endblock %}
 
 {% block filters %}
 {% endblock %}
 
 {% block content %}
-
+    <h2>Оформление заказа</h2>
+    <ul>
+        {% for item in cart %}
+            <li class="py-2">
+                <strong>{{ item.product.title }}</strong><br>{{ item.quantity }} x {{ item.price }} грн <br>
+                <span>Всего за этот товар: {{ item.total_price }} грн</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>
+        <strong>Всего: {{ cart.get_total_price }} грн</strong>
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button class="btn btn-success" type="submit">Оформить заказ</button>
+    </form>
 {% endblock %}

@@ -18,7 +18,7 @@ class Order(models.Model):
         return f'Order {self.id}'
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item  in self.items.all())
+        return sum(item.get_cost() for item in self.items.all())
 
     class Meta:
         ordering = ('-created',)
